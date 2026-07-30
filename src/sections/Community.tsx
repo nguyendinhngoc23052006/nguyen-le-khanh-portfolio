@@ -9,6 +9,7 @@ export default function Community() {
       eyebrow={t('community.eyebrow')}
       headline={t('community.headline')}
       body={t('community.body')}
+      motif="orbit"
       tone="ochre"
     />
   )

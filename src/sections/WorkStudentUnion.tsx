@@ -9,6 +9,7 @@ export default function WorkStudentUnion() {
       eyebrow={t('workStudentUnion.eyebrow')}
       headline={t('workStudentUnion.headline')}
       body={t('workStudentUnion.body')}
+      motif="wave"
       tone="forest"
     />
   )

@@ -9,6 +9,7 @@ export default function Belief() {
       eyebrow={t('belief.eyebrow')}
       headline={t('belief.headline')}
       body={t('belief.body')}
+      motif="compass"
       tone="cream"
     />
   )
