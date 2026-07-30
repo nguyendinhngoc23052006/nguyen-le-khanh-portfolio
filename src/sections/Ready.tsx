@@ -8,6 +8,7 @@ export default function Ready() {
       id="ready"
       headline={t('ready.headline')}
       body={t('ready.body')}
+      motif="horizon"
       tone="ochre"
       align="center"
     />

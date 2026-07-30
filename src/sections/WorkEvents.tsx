@@ -9,6 +9,7 @@ export default function WorkEvents() {
       eyebrow={t('workEvents.eyebrow')}
       headline={t('workEvents.headline')}
       body={t('workEvents.body')}
+      motif="ripple"
       tone="forest"
     />
   )

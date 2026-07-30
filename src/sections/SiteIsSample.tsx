@@ -9,6 +9,7 @@ export default function SiteIsSample() {
       eyebrow={t('siteIsSample.eyebrow')}
       headline={t('siteIsSample.headline')}
       body={t('siteIsSample.body')}
+      motif="spiral"
       tone="forest"
     />
   )

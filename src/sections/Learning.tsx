@@ -9,6 +9,7 @@ export default function Learning() {
       eyebrow={t('learning.eyebrow')}
       headline={t('learning.headline')}
       body={t('learning.body')}
+      motif="seed"
       tone="cream"
     />
   )

@@ -9,6 +9,7 @@ export default function WorkContest() {
       eyebrow={t('workContest.eyebrow')}
       headline={t('workContest.headline')}
       body={t('workContest.body')}
+      motif="thread"
       tone="cream"
     />
   )

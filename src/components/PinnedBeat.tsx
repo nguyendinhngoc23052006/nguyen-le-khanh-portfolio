@@ -1,13 +1,16 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import type { ReactNode } from 'react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Motif, { type MotifKind } from './Motif'
+
+gsap.registerPlugin(ScrollTrigger)
 
 type Props = {
   id: string
   eyebrow?: string
   headline: string
   body?: string
-  motif?: ReactNode
+  motif?: MotifKind
   align?: 'left' | 'center'
   tone?: 'cream' | 'forest' | 'ochre'
 }
@@ -27,67 +30,119 @@ export default function PinnedBeat({
   align = 'left',
   tone = 'cream',
 }: Props) {
-  const root = useRef<HTMLElement>(null)
+  const outer = useRef<HTMLElement>(null)
+  const eyebrowRef = useRef<HTMLSpanElement>(null)
   const headlineRef = useRef<HTMLHeadingElement>(null)
   const bodyRef = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {
+    if (!outer.current) return
     const ctx = gsap.context(() => {
-      gsap.from(headlineRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: root.current,
-          start: 'top 70%',
-        },
-      })
-      if (bodyRef.current) {
-        gsap.from(bodyRef.current, {
-          y: 20,
-          opacity: 0,
-          duration: 1,
-          delay: 0.15,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: root.current,
-            start: 'top 70%',
+      if (eyebrowRef.current) {
+        gsap.fromTo(
+          eyebrowRef.current,
+          { opacity: 0, y: 8 },
+          {
+            opacity: 0.7,
+            y: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: outer.current,
+              start: 'top bottom',
+              end: 'top center',
+              scrub: true,
+            },
           },
-        })
+        )
       }
-    }, root)
+
+      const words = headlineRef.current?.querySelectorAll('.word')
+      if (words && words.length) {
+        gsap.fromTo(
+          words,
+          { opacity: 0.12, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.04,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: outer.current,
+              start: 'top 80%',
+              end: 'top top',
+              scrub: true,
+            },
+          },
+        )
+      }
+
+      if (bodyRef.current) {
+        gsap.fromTo(
+          bodyRef.current,
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: outer.current,
+              start: 'top top',
+              end: '+=40%',
+              scrub: true,
+            },
+          },
+        )
+      }
+    }, outer)
     return () => ctx.revert()
   }, [])
 
-  const alignClass = align === 'center' ? 'items-center text-center' : 'items-start text-left'
+  const alignClass =
+    align === 'center' ? 'items-center text-center' : 'items-start text-left'
+
+  const words = headline.split(' ')
 
   return (
     <section
       id={id}
-      ref={root}
-      className={`relative flex min-h-screen w-full flex-col justify-center px-6 py-24 md:px-16 lg:px-24 ${toneClasses[tone]}`}
+      ref={outer}
+      className={`relative w-full ${toneClasses[tone]}`}
+      style={{ minHeight: '200vh' }}
     >
-      <div className={`mx-auto flex w-full max-w-5xl flex-col gap-6 ${alignClass}`}>
-        {eyebrow ? (
-          <span className="text-xs uppercase tracking-[0.3em] opacity-70">{eyebrow}</span>
-        ) : null}
-        <h2
-          ref={headlineRef}
-          className="serif beat-text text-4xl leading-[1.05] md:text-6xl lg:text-7xl"
+      <div className="sticky top-0 flex h-screen w-full flex-col justify-center overflow-hidden px-6 py-24 md:px-16 lg:px-24">
+        {motif ? <Motif kind={motif} /> : null}
+        <div
+          className={`relative z-10 mx-auto flex w-full max-w-5xl flex-col gap-6 ${alignClass}`}
         >
-          {headline}
-        </h2>
-        {body ? (
-          <p
-            ref={bodyRef}
-            className="beat-text max-w-2xl text-base leading-relaxed md:text-lg"
+          {eyebrow ? (
+            <span
+              ref={eyebrowRef}
+              className="text-xs uppercase tracking-[0.3em]"
+            >
+              {eyebrow}
+            </span>
+          ) : null}
+          <h2
+            ref={headlineRef}
+            className="serif beat-text text-4xl leading-[1.05] md:text-6xl lg:text-7xl"
           >
-            {body}
-          </p>
-        ) : null}
+            {words.map((w, i) => (
+              <span key={i} className="word">
+                {w}
+                {i < words.length - 1 ? ' ' : ''}
+              </span>
+            ))}
+          </h2>
+          {body ? (
+            <p
+              ref={bodyRef}
+              className="beat-text max-w-2xl text-base leading-relaxed md:text-lg"
+            >
+              {body}
+            </p>
+          ) : null}
+        </div>
       </div>
-      {motif ? <div className="pointer-events-none absolute inset-0 -z-0">{motif}</div> : null}
     </section>
   )
 }
