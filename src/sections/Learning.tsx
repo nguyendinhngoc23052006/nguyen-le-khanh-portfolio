@@ -83,6 +83,24 @@ export default function Learning() {
       tl.to(canopyRef.current, { opacity: 0.18, scale: 1, duration: 0.4 }, 0.55)
       tl.to(headlineRef.current, { opacity: 1, y: 0, duration: 0.3 }, 0.65)
       tl.to(bodyRef.current, { opacity: 1, y: 0, duration: 0.25 }, 0.82)
+
+      gsap.to('.lr-leaf', {
+        y: '+=4',
+        rotation: 4,
+        duration: 2.4,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        transformOrigin: 'center',
+        stagger: { each: 0.2, from: 'random' },
+      })
+      gsap.to(canopyRef.current, {
+        scale: 1.06,
+        duration: 3.5,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+      })
     }, root)
     return () => ctx.revert()
   }, [reduced])

@@ -87,6 +87,15 @@ export default function WorkStudentUnion() {
         repeat: -1,
         ease: 'sine.inOut',
       })
+      gsap.to('.rs-ripple', {
+        scale: 1.06,
+        duration: 3,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        stagger: { each: 0.3, from: 'center' },
+        transformOrigin: 'center',
+      })
     }, root)
     return () => ctx.revert()
   }, [reduced])

@@ -52,6 +52,10 @@ export function splitWords(text: string): string[] {
   return text.split(' ')
 }
 
+export function splitWordsIntoLetters(text: string): string[][] {
+  return text.split(' ').map((word) => Array.from(word))
+}
+
 export function dotsOnRing(
   count: number,
   radius: number,

@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { initScroll } from './lib/scroll'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import GrainOverlay from './components/GrainOverlay'
+import ChapterIndicator from './components/ChapterIndicator'
 import Hero from './sections/Hero'
 import Belief from './sections/Belief'
 import WorkStudentUnion from './sections/WorkStudentUnion'
@@ -45,6 +47,8 @@ export default function App({ locale }: Props) {
         <Contact />
       </main>
       <Footer />
+      <GrainOverlay />
+      <ChapterIndicator />
     </div>
   )
 }
