@@ -1,0 +1,60 @@
+{
+  "header": {
+    "mark": "Nguyễn Lê Khanh"
+  },
+  "hero": {
+    "eyebrow": "Portfolio · 2026",
+    "name": "Nguyễn Lê Khanh",
+    "tagline": "Content & media, sinh năm 2007. Mình kể chuyện cho những điều đáng giữ lại.",
+    "scrollCue": "Cuộn xuống"
+  },
+  "belief": {
+    "eyebrow": "Niềm tin",
+    "headline": "Mình muốn khám phá những điều trước đây mình chưa từng tin bản thân có thể làm được.",
+    "body": "Với mình, mỗi lần bước vào một chủ đề mới — một cộng đồng mới, một cánh rừng mới, một câu chuyện mới — là một lần được lớn lên. Đó là lý do mình chọn công việc content cho một dự án bảo tồn: nơi mỗi chi tiết đều đáng để học lại từ đầu."
+  },
+  "workStudentUnion": {
+    "eyebrow": "Đã làm · 01",
+    "headline": "Mình đã làm truyền thông cho hội sinh viên.",
+    "body": "Từ những bài đăng đầu tiên đến những chiến dịch chạy song song nhiều tuần, mình học được rằng một dòng tít tốt có thể kéo cả một hoạt động sống lại. Đó là kỹ năng mà một dự án bảo tồn cần mỗi ngày."
+  },
+  "workContest": {
+    "eyebrow": "Đã làm · 02",
+    "headline": "Mình đã viết content cho các cuộc thi sinh viên.",
+    "body": "Viết theo brief, theo deadline, theo tinh thần của người tổ chức — nhưng vẫn giữ được giọng riêng để người đọc dừng lại. Đó là kỷ luật mà mình sẽ mang theo vào từng bài viết về rừng, về biển, về đất."
+  },
+  "workEvents": {
+    "eyebrow": "Đã làm · 03",
+    "headline": "Mình đã lên ý tưởng và điều hành các sự kiện học sinh.",
+    "body": "Từ trang giấy trắng đến khoảnh khắc mọi người đứng ở đúng vị trí, đúng giờ, đúng cảm xúc. Mình hiểu content không kết thúc ở dòng cuối — nó kết thúc khi cộng đồng thật sự bước vào câu chuyện."
+  },
+  "community": {
+    "eyebrow": "Cách mình làm việc",
+    "headline": "Mình viết cho cộng đồng — không viết về họ.",
+    "body": "Bảo tồn không sống bằng những khẩu hiệu xa vời. Nó sống nhờ những người dân địa phương, những em nhỏ, những người tình nguyện — và những câu chuyện đủ gần gũi để họ tin. Đó là khoảng cách mà mình muốn thu hẹp."
+  },
+  "learning": {
+    "eyebrow": "Đường mình đi",
+    "headline": "Mình học hỏi, tìm tòi, và phát triển cùng cộng đồng.",
+    "body": "Mình chưa biết mọi thứ — nhưng mình biết cách hỏi, cách quan sát, và cách viết lại những gì mình nghe được sao cho không ai bị mất tiếng nói. Với một dự án bảo tồn, đó có thể là kỹ năng quý hơn cả kinh nghiệm."
+  },
+  "siteIsSample": {
+    "eyebrow": "Sample",
+    "headline": "Chưa có portfolio thì mình tự dựng một cái.",
+    "body": "Trang bạn đang cuộn là bài mẫu đầu tiên của mình — song ngữ, thiết kế bằng tay, kể theo mạch cuộn. Nếu bạn thích cách mình sắp xếp câu chuyện ở đây, mình sẽ làm điều tương tự cho dự án của bạn."
+  },
+  "ready": {
+    "headline": "Sẵn sàng.",
+    "body": "Sẵn sàng học. Sẵn sàng viết. Sẵn sàng đi tới nơi có cây, có nước, có người cần được lắng nghe."
+  },
+  "contact": {
+    "eyebrow": "Liên hệ",
+    "headline": "Mình rất mong được đồng hành cùng dự án của bạn.",
+    "body": "Nếu bạn đang tìm một người viết cho một dự án bảo tồn môi trường — mình ở đây, sẵn sàng bắt đầu từ tuần này.",
+    "subject": "Cộng tác nội dung — dự án bảo tồn môi trường"
+  },
+  "footer": {
+    "credit": "Thiết kế và viết bởi Nguyễn Lê Khanh.",
+    "year": "© {{year}}"
+  }
+}
