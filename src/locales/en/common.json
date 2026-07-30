@@ -1,0 +1,60 @@
+{
+  "header": {
+    "mark": "Nguyễn Lê Khanh"
+  },
+  "hero": {
+    "eyebrow": "Portfolio · 2026",
+    "name": "Nguyễn Lê Khanh",
+    "tagline": "Content & media, born 2007. I write stories for the things worth keeping.",
+    "scrollCue": "Scroll"
+  },
+  "belief": {
+    "eyebrow": "Belief",
+    "headline": "I want to try the things I never believed I could do.",
+    "body": "Every time I step into something new — a new community, a new forest, a new story — I get to grow. That is why I chose content work for a conservation project: everywhere I look, there is something worth learning from scratch."
+  },
+  "workStudentUnion": {
+    "eyebrow": "Done · 01",
+    "headline": "I have run comms for a student union.",
+    "body": "From the first single posts to campaigns that ran for weeks in parallel, I learned that a good headline can pull a whole event back to life. Conservation work needs that skill every day."
+  },
+  "workContest": {
+    "eyebrow": "Done · 02",
+    "headline": "I have written content for student contests.",
+    "body": "Writing to a brief, to a deadline, to someone else's spirit — while still keeping a voice that makes people stop. That is the discipline I will bring to every piece about the forest, the sea, the land."
+  },
+  "workEvents": {
+    "eyebrow": "Done · 03",
+    "headline": "I have imagined and run events for students.",
+    "body": "From a blank page to the moment everyone is in the right place, at the right time, in the right mood. I know content does not end at the last line — it ends when a community actually steps into the story."
+  },
+  "community": {
+    "eyebrow": "How I work",
+    "headline": "I write for a community — not about it.",
+    "body": "Conservation does not survive on distant slogans. It survives because of local families, kids, volunteers — and stories close enough for them to trust. Closing that distance is what I am here for."
+  },
+  "learning": {
+    "eyebrow": "How I grow",
+    "headline": "I learn, I dig, and I grow with the community.",
+    "body": "I do not know everything yet — but I know how to ask, how to listen, and how to write down what I hear so that no one gets left out of the story. For a conservation project, that is often worth more than experience."
+  },
+  "siteIsSample": {
+    "eyebrow": "Sample",
+    "headline": "No portfolio yet — so I built one.",
+    "body": "The page you are scrolling is my first sample: bilingual, hand-crafted, told in scroll. If you like the way I arrange a story here, I will do the same for your project."
+  },
+  "ready": {
+    "headline": "Ready.",
+    "body": "Ready to learn. Ready to write. Ready to go where there are trees, water, and people worth listening to."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "headline": "I would love to walk this project with you.",
+    "body": "If you are looking for a writer for an environmental conservation project — I am here, ready to start this week.",
+    "subject": "Content collaboration — environmental conservation project"
+  },
+  "footer": {
+    "credit": "Designed and written by Nguyễn Lê Khanh.",
+    "year": "© {{year}}"
+  }
+}
