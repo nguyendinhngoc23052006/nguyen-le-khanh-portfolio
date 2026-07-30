@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTranslation } from 'react-i18next'
-import { useReducedMotion, splitLetters, randomPoints } from '../lib/scene'
+import { useReducedMotion, splitWordsIntoLetters, randomPoints } from '../lib/scene'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -87,7 +87,7 @@ export default function Hero() {
   }, [reduced, t])
 
   const nameText = t('hero.name')
-  const letters = splitLetters(nameText)
+  const wordLetters = splitWordsIntoLetters(nameText)
 
   return (
     <section
@@ -141,13 +141,16 @@ export default function Hero() {
             ref={nameRef}
             className="serif beat-text text-6xl leading-[0.95] md:text-8xl lg:text-[10rem]"
           >
-            {letters.map((ch, i) => (
+            {wordLetters.map((word, wi) => (
               <span
-                key={i}
-                className="letter inline-block"
-                style={{ whiteSpace: ch === ' ' ? 'pre' : 'normal' }}
+                key={wi}
+                className="mr-[0.28em] inline-block whitespace-nowrap last:mr-0"
               >
-                {ch}
+                {word.map((ch, li) => (
+                  <span key={li} className="letter inline-block">
+                    {ch}
+                  </span>
+                ))}
               </span>
             ))}
           </h1>

@@ -91,6 +91,22 @@ export default function Belief() {
       })
       tl.to(headlineRef.current, { opacity: 1, y: 0, duration: 0.3 }, 0.55)
       tl.to(bodyRef.current, { opacity: 1, y: 0, duration: 0.25 }, 0.75)
+
+      gsap.to('.b-dot', {
+        scale: 1.15,
+        duration: 2.2,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        stagger: { each: 0.15, from: 'random' },
+      })
+      gsap.to('.b-center', {
+        scale: 1.2,
+        duration: 1.6,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+      })
     }, root)
     return () => ctx.revert()
   }, [reduced])
