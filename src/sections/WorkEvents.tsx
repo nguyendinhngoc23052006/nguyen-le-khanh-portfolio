@@ -73,6 +73,24 @@ export default function WorkEvents() {
       tl.to('.we-grid', { opacity: 0.05, duration: 0.15 }, 0.7)
       tl.to(headlineRef.current, { opacity: 1, y: 0, duration: 0.25 }, 0.65)
       tl.to(bodyRef.current, { opacity: 1, y: 0, duration: 0.25 }, 0.82)
+
+      // Idle: attendees breathe, stage glows
+      gsap.to('.we-person', {
+        scale: 1.1,
+        duration: 2.4,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        transformOrigin: 'center',
+        stagger: { each: 0.08, from: 'random' },
+      })
+      gsap.to('.we-stage', {
+        opacity: 0.75,
+        duration: 2.2,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+      })
     }, root)
     return () => ctx.revert()
   }, [reduced])

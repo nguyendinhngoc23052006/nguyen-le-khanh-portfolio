@@ -107,6 +107,14 @@ export default function Belief() {
         repeat: -1,
         ease: 'sine.inOut',
       })
+      gsap.to('.b-line', {
+        opacity: 0.7,
+        duration: 2.6,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        stagger: { each: 0.12, from: 'random' },
+      })
     }, root)
     return () => ctx.revert()
   }, [reduced])

@@ -97,6 +97,15 @@ export default function Hero() {
       style={{ minHeight: '250vh' }}
     >
       <div className="sticky top-0 flex h-screen w-full flex-col justify-between overflow-hidden px-6 py-16 md:px-16 lg:px-24">
+        {/* Aurora nebula wash */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 70% 50% at 30% 30%, rgba(60,90,70,0.35) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 75% 60%, rgba(120,80,50,0.28) 0%, transparent 60%)',
+          }}
+        />
         <svg
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 h-full w-full"
