@@ -85,6 +85,25 @@ export default function Community() {
       tl.to(strikeRef.current, { scaleX: 1, duration: 0.25, ease: 'power2.out' }, 0.72)
       tl.to(chophraseRef.current, { color: '#c68b3c', duration: 0.15 }, 0.75)
       tl.to(bodyRef.current, { opacity: 1, y: 0, duration: 0.25 }, 0.82)
+
+      // Idle: community members gently breathe + subtle orbit shimmer
+      gsap.to('.co-person', {
+        scale: 1.08,
+        duration: 2.4,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        transformOrigin: 'center',
+        stagger: { each: 0.1, from: 'random' },
+      })
+      gsap.to('.co-writer', {
+        scale: 1.05,
+        duration: 3,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        transformOrigin: 'center',
+      })
     }, root)
     return () => ctx.revert()
   }, [reduced])
