@@ -6,19 +6,11 @@ import { useReducedMotion } from '../lib/scene'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const PEOPLE = [
-  { x: 90, y: 90 },
-  { x: 150, y: 90 },
-  { x: 210, y: 90 },
-  { x: 90, y: 150 },
-  { x: 150, y: 150 },
-  { x: 210, y: 150 },
-  { x: 90, y: 210 },
-  { x: 150, y: 210 },
-  { x: 210, y: 210 },
-  { x: 60, y: 260 },
-  { x: 240, y: 260 },
-]
+// Audience silhouettes in the front row facing the stage.
+const AUDIENCE = Array.from({ length: 14 }, (_, i) => ({
+  x: 40 + i * 32,
+  scale: 0.9 + ((i * 37) % 10) / 40,
+}))
 
 export default function WorkEvents() {
   const { t } = useTranslation()
@@ -32,61 +24,88 @@ export default function WorkEvents() {
     if (!root.current) return
     const ctx = gsap.context(() => {
       if (reduced) {
-        gsap.set(['.we-grid', '.we-venue', '.we-stage', '.we-person', eyebrowRef.current, headlineRef.current, bodyRef.current], {
-          opacity: 1,
-        })
+        gsap.set(
+          [
+            eyebrowRef.current,
+            headlineRef.current,
+            bodyRef.current,
+            '.ev-stage',
+            '.ev-backdrop',
+            '.ev-banner',
+            '.ev-spot',
+            '.ev-audience',
+          ],
+          { opacity: 1 },
+        )
         return
       }
 
       gsap.set(eyebrowRef.current, { opacity: 0 })
-      gsap.set('.we-grid', { opacity: 0 })
-      gsap.set('.we-venue', { strokeDasharray: 1000, strokeDashoffset: 1000, opacity: 0 })
-      gsap.set('.we-stage', { opacity: 0, scaleY: 0, transformOrigin: 'center bottom' })
-      gsap.set('.we-person', { opacity: 0, scale: 0, transformOrigin: 'center' })
       gsap.set(headlineRef.current, { opacity: 0, y: 30 })
       gsap.set(bodyRef.current, { opacity: 0, y: 20 })
+      gsap.set('.ev-backdrop', { opacity: 0, y: -20, transformOrigin: 'center top' })
+      gsap.set('.ev-banner', { opacity: 0, scaleX: 0, transformOrigin: 'center' })
+      gsap.set('.ev-stage', { opacity: 0, y: 20 })
+      gsap.set('.ev-spot', { opacity: 0, scaleY: 0, transformOrigin: 'center top' })
+      gsap.set('.ev-audience', { opacity: 0, y: 20, transformOrigin: 'center bottom' })
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root.current,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 0.6,
+          scrub: 0.5,
         },
       })
 
-      tl.to(eyebrowRef.current, { opacity: 0.7, duration: 0.05 }, 0)
-      tl.to('.we-grid', { opacity: 0.15, duration: 0.15 }, 0.05)
-      tl.to('.we-venue', { opacity: 0.6, strokeDashoffset: 0, duration: 0.4, ease: 'power2.out' }, 0.15)
-      tl.to('.we-stage', { opacity: 0.5, scaleY: 1, duration: 0.2 }, 0.35)
+      tl.to(eyebrowRef.current, { opacity: 0.75, duration: 0.05 }, 0)
+      tl.to('.ev-backdrop', { opacity: 1, y: 0, duration: 0.25 }, 0.05)
+      tl.to('.ev-banner', { opacity: 1, scaleX: 1, duration: 0.28, ease: 'power2.out' }, 0.18)
+      tl.to('.ev-stage', { opacity: 1, y: 0, duration: 0.22 }, 0.12)
+      tl.to('.ev-spot', { opacity: 0.55, scaleY: 1, duration: 0.3, ease: 'power2.out' }, 0.25)
       tl.to(
-        '.we-person',
+        '.ev-audience',
         {
           opacity: 1,
-          scale: 1,
+          y: 0,
           duration: 0.25,
           stagger: { each: 0.03, from: 'random' },
-          ease: 'back.out(1.6)',
+          ease: 'back.out(1.5)',
         },
-        0.45,
+        0.35,
       )
-      tl.to('.we-grid', { opacity: 0.05, duration: 0.15 }, 0.7)
-      tl.to(headlineRef.current, { opacity: 1, y: 0, duration: 0.25 }, 0.65)
-      tl.to(bodyRef.current, { opacity: 1, y: 0, duration: 0.25 }, 0.82)
+      tl.to(headlineRef.current, { opacity: 1, y: 0, duration: 0.3 }, 0.6)
+      tl.to(bodyRef.current, { opacity: 1, y: 0, duration: 0.25 }, 0.78)
 
-      // Idle: attendees breathe, stage glows
-      gsap.to('.we-person', {
-        scale: 1.1,
-        duration: 2.4,
+      // Idle: spotlight flickers, audience gently sways, one member "claps" (jiggles)
+      gsap.to('.ev-spot', {
+        opacity: 0.75,
+        duration: 1.4,
         yoyo: true,
         repeat: -1,
         ease: 'sine.inOut',
-        transformOrigin: 'center',
-        stagger: { each: 0.08, from: 'random' },
       })
-      gsap.to('.we-stage', {
-        opacity: 0.75,
-        duration: 2.2,
+      AUDIENCE.forEach((_, i) => {
+        gsap.to(`.ev-audience-${i}`, {
+          y: '+=2',
+          duration: 1.8 + (i % 3) * 0.3,
+          yoyo: true,
+          repeat: -1,
+          ease: 'sine.inOut',
+          delay: (i % 5) * 0.15,
+        })
+      })
+      gsap.to('.ev-audience-5', {
+        scaleY: 1.08,
+        duration: 0.4,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        transformOrigin: 'center bottom',
+      })
+      gsap.to('.ev-banner', {
+        skewX: 0.8,
+        duration: 3.5,
         yoyo: true,
         repeat: -1,
         ease: 'sine.inOut',
@@ -95,9 +114,6 @@ export default function WorkEvents() {
     return () => ctx.revert()
   }, [reduced])
 
-  const gridLines: number[] = []
-  for (let i = 0; i <= 30; i += 1) gridLines.push(i * 10)
-
   return (
     <section
       id="work-events"
@@ -105,66 +121,80 @@ export default function WorkEvents() {
       className="relative w-full bg-forest text-cream"
       style={{ minHeight: '300vh' }}
     >
-      <div className="sticky top-0 flex h-screen w-full flex-col justify-between overflow-hidden px-6 py-24 md:px-16 lg:px-24">
+      <div className="sticky top-0 flex h-screen w-full flex-col justify-between overflow-hidden px-6 py-20 md:px-16 md:py-24 lg:px-24">
         <div className="relative z-10 flex justify-between">
           <span ref={eyebrowRef} className="text-xs uppercase tracking-[0.3em]">
             {t('workEvents.eyebrow')}
           </span>
-          <span className="text-xs uppercase tracking-[0.3em] opacity-40">05 / 10</span>
         </div>
 
-        <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center gap-10 lg:gap-12">
           <svg
-            viewBox="0 0 300 300"
+            viewBox="0 0 500 380"
             aria-hidden="true"
-            className="mx-auto h-80 w-80 text-cream md:h-96 md:w-96"
+            className="h-64 w-full max-w-2xl md:h-72 lg:h-80"
           >
-            <g className="we-grid">
-              {gridLines.map((v) => (
-                <line key={`gv${v}`} x1={v} y1="0" x2={v} y2="300" stroke="currentColor" strokeWidth="0.5" />
-              ))}
-              {gridLines.map((v) => (
-                <line key={`gh${v}`} x1="0" y1={v} x2="300" y2={v} stroke="currentColor" strokeWidth="0.5" />
+            <defs>
+              <linearGradient id="ev-spot-grad" x1="50%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" stopColor="rgba(255,230,155,0.7)" />
+                <stop offset="100%" stopColor="rgba(255,230,155,0)" />
+              </linearGradient>
+            </defs>
+
+            {/* Backdrop */}
+            <rect className="ev-backdrop" x="60" y="30" width="380" height="180" fill="#0f1b12" />
+            <rect className="ev-backdrop" x="60" y="30" width="380" height="4" fill="#c68b3c" />
+
+            {/* Banner across backdrop */}
+            <g className="ev-banner">
+              <path d="M 100 60 L 400 60 L 385 90 L 115 90 Z" fill="#c68b3c" />
+              <line x1="130" y1="72" x2="200" y2="72" stroke="#122015" strokeWidth="1.5" opacity="0.6" />
+              <line x1="210" y1="72" x2="280" y2="72" stroke="#122015" strokeWidth="1.5" opacity="0.6" />
+              <line x1="290" y1="72" x2="370" y2="72" stroke="#122015" strokeWidth="1.5" opacity="0.6" />
+            </g>
+
+            {/* Spotlight beam from top */}
+            <path
+              className="ev-spot"
+              d="M 230 30 L 170 260 L 330 260 L 270 30 Z"
+              fill="url(#ev-spot-grad)"
+            />
+
+            {/* Stage */}
+            <rect className="ev-stage" x="80" y="240" width="340" height="30" fill="#8a6c3a" rx="2" />
+            <rect className="ev-stage" x="80" y="270" width="340" height="12" fill="#5a3f1a" />
+
+            {/* Audience silhouettes */}
+            <g>
+              {AUDIENCE.map((a, i) => (
+                <g
+                  key={i}
+                  className={`ev-audience ev-audience-${i}`}
+                  transform={`translate(${a.x} 340) scale(${a.scale})`}
+                >
+                  <circle cx="0" cy="-10" r="6" fill="#050e07" />
+                  <path
+                    d="M -9 20 C -11 8 -6 -2 0 -2 C 6 -2 11 8 9 20 Z"
+                    fill="#050e07"
+                  />
+                </g>
               ))}
             </g>
-            <rect
-              className="we-venue"
-              x="30"
-              y="50"
-              width="240"
-              height="220"
-              rx="4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.25"
-            />
-            <rect
-              className="we-stage"
-              x="90"
-              y="40"
-              width="120"
-              height="12"
-              fill="currentColor"
-              opacity="0.5"
-            />
-            {PEOPLE.map((p, i) => (
-              <g key={i} className="we-person" transform={`translate(${p.x} ${p.y})`}>
-                <circle cx="0" cy="-6" r="3" fill="currentColor" />
-                <path d="M -5 8 Q 0 -2 5 8 Z" fill="currentColor" opacity="0.85" />
-              </g>
-            ))}
+
+            {/* Floor edge line */}
+            <line x1="0" y1="340" x2="500" y2="340" stroke="#0f1b12" strokeWidth="1" opacity="0.6" />
           </svg>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center gap-6 text-center">
             <h2
               ref={headlineRef}
-              className="serif beat-text text-4xl leading-[1.05] md:text-5xl lg:text-6xl"
+              className="serif beat-text max-w-3xl text-3xl leading-[1.1] md:text-4xl lg:text-5xl"
             >
               {t('workEvents.headline')}
             </h2>
             <p
               ref={bodyRef}
-              className="beat-text max-w-xl text-base leading-relaxed md:text-lg"
+              className="max-w-xl text-base leading-relaxed md:text-lg"
             >
               {t('workEvents.body')}
             </p>

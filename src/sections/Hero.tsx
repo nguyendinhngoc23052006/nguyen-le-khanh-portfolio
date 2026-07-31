@@ -106,6 +106,21 @@ export default function Hero() {
               'radial-gradient(ellipse 70% 50% at 30% 30%, rgba(60,90,70,0.35) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 75% 60%, rgba(120,80,50,0.28) 0%, transparent 60%)',
           }}
         />
+        {/* Moon */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            top: '12%',
+            right: '10%',
+            width: '5rem',
+            height: '5rem',
+            background:
+              'radial-gradient(circle, rgba(230,215,180,0.95) 0%, rgba(230,215,180,0.6) 40%, rgba(230,215,180,0) 75%)',
+            boxShadow: '0 0 60px rgba(230,215,180,0.35)',
+          }}
+        />
+
         <svg
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 h-full w-full"
@@ -120,6 +135,21 @@ export default function Hero() {
             strokeOpacity="0.35"
             strokeWidth="1"
           />
+        </svg>
+
+        {/* Distant tree line at the horizon */}
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 w-full"
+          viewBox="0 0 1000 200"
+          preserveAspectRatio="none"
+        >
+          <g fill="#050e07">
+            <path d="M 0 200 L 0 130 L 40 100 L 80 130 L 120 90 L 160 130 L 200 105 L 240 130 L 300 95 L 340 130 L 380 100 L 420 130 L 480 90 L 520 130 L 560 100 L 600 130 L 660 95 L 700 130 L 740 105 L 780 130 L 820 90 L 860 130 L 900 100 L 940 130 L 1000 110 L 1000 200 Z" />
+          </g>
+          <g fill="#0a1509" opacity="0.6">
+            <path d="M 0 200 L 0 160 L 60 130 L 120 155 L 200 130 L 280 160 L 360 130 L 440 150 L 520 130 L 600 160 L 680 130 L 760 150 L 840 130 L 920 155 L 1000 140 L 1000 200 Z" />
+          </g>
         </svg>
 
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
