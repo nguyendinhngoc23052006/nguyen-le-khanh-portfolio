@@ -60,6 +60,23 @@ export default function Contact() {
       tl.to(headlineRef.current, { opacity: 1, y: 0, duration: 0.25 }, 0.6)
       tl.to(bodyRef.current, { opacity: 1, y: 0, duration: 0.2 }, 0.75)
       tl.to(emailRef.current, { opacity: 1, y: 0, duration: 0.3 }, 0.85)
+
+      // Idle: envelope breathes gently
+      gsap.to(bodyRectRef.current, {
+        scale: 1.015,
+        duration: 3.5,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        transformOrigin: 'center',
+      })
+      gsap.to(emailRef.current, {
+        opacity: 0.75,
+        duration: 2.2,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+      })
     }, root)
     return () => ctx.revert()
   }, [reduced])
@@ -127,7 +144,8 @@ export default function Contact() {
             <a
               ref={emailRef}
               href={`mailto:${EMAIL}?subject=${encodeURIComponent(t('contact.subject'))}`}
-              className="serif inline-block w-fit border-b border-cream pb-1 text-2xl italic transition hover:opacity-70 md:text-3xl"
+              className="serif inline-block w-fit border-b border-cream pb-1 text-2xl italic transition hover:text-ochre hover:opacity-90 md:text-3xl"
+              style={{ textShadow: '0 0 20px rgba(198,139,60,0.35)' }}
             >
               {EMAIL}
             </a>
