@@ -68,8 +68,8 @@ export default function ChapterIndicator() {
   const number = String(active + 1).padStart(2, '0')
 
   return (
-    <div className="pointer-events-none fixed bottom-6 right-6 z-40 flex items-end gap-3 mix-blend-difference text-cream">
-      <div className="flex h-16 w-[2px] items-end justify-end overflow-hidden bg-cream/20">
+    <div className="pointer-events-none fixed bottom-3 right-3 z-40 flex items-end gap-2 mix-blend-difference text-cream md:bottom-6 md:right-6 md:gap-3">
+      <div className="flex h-10 w-[2px] items-end justify-end overflow-hidden bg-cream/20 md:h-16">
         <div
           ref={barRef}
           className="h-full w-full origin-bottom bg-cream"
@@ -79,14 +79,14 @@ export default function ChapterIndicator() {
       <div className="flex flex-col items-end gap-1 text-right">
         <span
           ref={numberRef}
-          className="serif text-2xl leading-none tracking-tight"
+          className="serif text-sm leading-none tracking-tight md:text-2xl"
         >
           {number}
           <span className="opacity-40"> / 10</span>
         </span>
         <span
           ref={labelRef}
-          className="text-[10px] uppercase tracking-[0.3em] opacity-80"
+          className="hidden text-[10px] uppercase tracking-[0.3em] opacity-80 md:inline"
         >
           {label}
         </span>
